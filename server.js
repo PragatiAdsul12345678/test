@@ -1,27 +1,23 @@
 var express = require('express');
 var app = express();
 
-
 //Reusable controllers
-var customerController=function (req, res) {
-  console.log("CAlling rest api");
-  var customers=[
-            {firstName:'Ravi',lastName:'Tambade',age:43},
-            {firstName:'Prashant',lastName:'Karhale',age:43},
-            {firstName:'Rohit',lastName:'Puranik',age:28},
-            {firstName:'Shiv',lastName:'Kumar',age:25},
-            {firstName:'Manoj',lastName:'Pande',age:23}
-      ];
-  res.send(customers);
+var productController=function(req, res){
+  console.log("Invoking  rest api for product list");
+  var products = [
+    {id:1, title:"Rose",description:"Valentine flower",quantity:500, unitprice:12},
+    {id:2, title:"Gerbera",description:"Wedding flower",quantity:1500, unitprice:16},
+    {id:3, title:"Lotus",description:"Worship flower",quantity:5000, unitprice:17},
+    {id:4, title:"Lily",description:"Smelling flower",quantity:400, unitprice:25},
+    {id:5, title:"Marigold",description:"Festival flower",quantity:7500, unitprice:34},
+  ];
+  res.send(products);
 };
 
 // setting router to map requests  with controllers
-
-app.get('/customers',customerController );
-
-var server = app.listen(8088, function () {
+app.get ('/products',productController);
+var server = app.listen(8086, function () {
   var host = server.address().address
   var port = server.address().port
-
-  console.log("Example app listening at http://localhost:8088", host, port)
+  console.log("Example app listening at http://localhost:8086", host, port)
 })
